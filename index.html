@@ -1,0 +1,582 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGO Helping Needy People</title>
+    <style>
+        /* CSS Styles */
+        :root {
+            --soft-blue: #6BAED6;
+            --calming-green: #8BC34A;
+            --warm-orange: #FF9800;
+            --light-gray: #F5F5F5;
+            --text-color: #333;
+            --font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-family);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--soft-blue);
+            color: #fff;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: var(--warm-orange);
+            border-radius: 5px;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background-color: var(--light-gray);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2, h3 {
+            color: var(--soft-blue);
+        }
+
+        h2 {
+            border-bottom: 2px solid var(--calming-green);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .banner {
+            background: url('https://images.unsplash.com/photo-1584691267517-d55545b59f52') no-repeat center center/cover;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .banner::before{
+            content:'';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            border-radius: 8px;
+        }
+
+        .banner-content{
+            position: relative;
+            z-index: 2;
+        }
+
+        .banner h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: #fff;
+        }
+
+        .banner p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-button {
+            background-color: var(--warm-orange);
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .cta-button:hover {
+            background-color: darken(var(--warm-orange), 10%);
+        }
+
+        .mission-statement {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .program-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .program-card {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        .program-card img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .about-us-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .about-us-text {
+            flex: 2;
+            min-width: 300px;
+        }
+        .about-us-text p{
+            margin: 10px 0;
+        }
+
+        .team-photos {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-member img {
+            max-width: 100px;
+            border-radius: 50%;
+            margin-bottom: 5px;
+        }
+
+        .programs-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .program-item {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .program-item img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        /* Gallery Styles */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 10px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Contact Form Styles */
+        .contact-form {
+            display: grid;
+            gap: 10px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        .contact-form button {
+            background-color: var(--warm-orange);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: darken(var(--warm-orange), 10%);
+        }
+
+        .contact-info {
+            margin-top: 20px;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+        }
+
+        /* Donate Section Styles */
+        .donate-options {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .donate-button {
+            background-color: var(--calming-green);
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .donate-button:hover {
+            background-color: darken(var(--calming-green), 10%);
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--soft-blue);
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        /* Testimonials Carousel Styles */
+        .testimonials-carousel {
+            overflow: hidden;
+            position: relative;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .testimonials-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .testimonial {
+            flex: 0 0 100%;
+            padding: 20px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .testimonial p{
+            margin: 10px 0;
+        }
+
+        .testimonial-author {
+            font-style: italic;
+            color: var(--soft-blue);
+            margin-top: 10px;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+            }
+
+            nav a {
+                display: block;
+                text-align: center;
+                padding: 0.5rem;
+            }
+
+            .program-highlights, .about-us-content, .programs-list, .gallery-grid {
+                flex-direction: column;
+            }
+
+            .program-card, .about-us-text, .program-item, .gallery-item {
+                width: 100%;
+            }
+            .banner{
+                padding: 50px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#homepage">Home</a>
+            <a href="#about-us">About Us</a>
+            <a href="#programs">Programs</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+            <a href="#donate">Donate</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="homepage">
+            <div class="banner">
+                <div class="banner-content">
+                    <h1>Help Us Make a Difference</h1>
+                    <p>Your support can change lives.</p>
+                    <a href="#donate" class="cta-button">Donate Now</a>
+                </div>
+            </div>
+            <div class="mission-statement">
+                <h2>Our Mission</h2>
+                <p>To provide essential support and resources to those in need, fostering hope and empowerment within our community.</p>
+            </div>
+            <div class="program-highlights">
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1517677208171-0bc6725a3e60" alt="Program 1">
+                    <h3>Education for All</h3>
+                    <p>Providing educational resources and opportunities to underprivileged children.</p>
+                </div>
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1532619187608-e5375cab26d6" alt="Program 2">
+                    <h3>Healthcare Access</h3>
+                    <p>Ensuring access to essential healthcare services for families in need.</p>
+                </div>
+                <div class="program-card">
+                    <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf" alt="Program 3">
+                    <h3>Food & Shelter</h3>
+                    <p>Distributing food and providing shelter to homeless individuals and families.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="about-us">
+            <h2>About Us</h2>
+            <div class="about-us-content">
+                <div class="about-us-text">
+                    <p>Our NGO is dedicated to improving the lives of needy individuals through various programs and initiatives. We believe in creating a positive impact by providing support, resources, and opportunities to those who need it most.</p>
+                    <p>Our vision is a world where everyone has access to basic necessities and the chance to live a fulfilling life. We work tirelessly to achieve this vision through our dedicated team and the generous support of our donors and volunteers.</p>
+                    <h3>Our Team</h3>
+                    <p>We are a group of passionate individuals committed to making a difference. Our team includes experienced professionals, dedicated volunteers, and compassionate leaders.</p>
+                </div>
+                <div class="team-photos">
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1507003222876-23c895b499d5" alt="Team Member 1">
+                        <p>John Doe, CEO</p>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80" alt="Team Member 2">
+                        <p>Jane Smith, Program Director</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="programs">
+            <h2>Our Programs</h2>
+            <div class="programs-list">
+                <div class="program-item">
+                    <img src="https://images.unsplash.com/photo-1517677208171-0bc6725a3e60" alt="Education Program">
+                    <h3>Education for All</h3>
+                    <p>We provide educational resources, scholarships, and tutoring programs to underprivileged children, ensuring they have access to quality education.</p>
+                </div>
+                <div class="program-item">
+                    <img src="https://images.unsplash.com/photo-1532619187608-e5375cab26d6" alt="Healthcare Program">
+                    <h3>Healthcare Access</h3>
+                    <p>Our healthcare program focuses on providing essential medical services, health check-ups, and vaccinations to families in need.</p>
+                </div>
+                <div class="program-item">
+                    <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf" alt="Food & Shelter Program">
+                    <h3>Food & Shelter</h3>
+                    <p>We distribute food packages, provide temporary shelter, and offer support services to homeless individuals and families.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="gallery">
+            <h2>Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1592210454359-9043f067919b" alt="Gallery Image 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb" alt="Gallery Image 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1512850183-6d7990f42385" alt="Gallery Image 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1544256718-3bcf237f3974" alt="Gallery Image 4">
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials">
+            <h2>Testimonials</h2>
+            <div class="testimonials-carousel">
+                <div class="testimonials-wrapper">
+                    <div class="testimonial">
+                        <p>"This NGO changed my life. They provided me with the support I needed to get back on my feet. I am forever grateful."</p>
+                        <p class="testimonial-author">- Sarah L.</p>
+                    </div>
+                    <div class="testimonial">
+                        <p>"The education program helped my children get the education they deserved. Thank you for making a difference in our lives."</p>
+                        <p class="testimonial-author">- Michael K.</p>
+                    </div>
+                    <div class="testimonial">
+                        <p>"Thanks to the healthcare program, my family received the medical care we needed. We are so thankful for your support."</p>
+                        <p class="testimonial-author">- Emily R.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <form class="contact-form" id="contactForm">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Your Email" required>
+                <textarea id="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+            <div class="contact-info">
+                <p>Address: 123 Main Street, City, Country</p>
+                <p>Phone: +1 (123) 456-7890</p>
+                <p>Email: info@ngohelpingneedy.org</p>
+            </div>
+        </section>
+
+        <section id="donate">
+            <h2>Donate</h2>
+            <p>Your generous donation can make a significant impact on the lives of those we serve. Choose an option below to contribute:</p>
+            <div class="donate-options">
+                <button class="donate-button" data-amount="25">$25</button>
+                <button class="donate-button" data-amount="50">$50</button>
+                <button class="donate-button" data-amount="100">$100</button>
+                <button class="donate-button" data-amount="other">Other Amount</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 NGO Helping Needy People. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Testimonials Carousel
+        const testimonialsWrapper = document.querySelector('.testimonials-wrapper');
+        let currentIndex = 0;
+
+        function showNextTestimonial() {
+            currentIndex = (currentIndex + 1) % 3; // Assuming 3 testimonials
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const translateX = -currentIndex * 100;
+            testimonialsWrapper.style.transform = `translateX(${translateX}%)`;
+        }
+
+        setInterval(showNextTestimonial, 5000); // Auto-rotate every 5 seconds
+
+        // Contact Form Validation
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if (name.trim() === '' || email.trim() === '' || message.trim() === '') {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+        });
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Donate Buttons
+        const donateButtons = document.querySelectorAll('.donate-button');
+        donateButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const amount = this.dataset.amount;
+                if (amount === 'other') {
+                    const customAmount = prompt('Enter the amount you wish to donate:');
+                    if (customAmount !== null && !isNaN(customAmount) && customAmount > 0) {
+                        alert(`Thank you for donating $${customAmount}!`);
+                    } else {
+                        alert('Invalid amount. Please enter a valid number.');
+                    }
+                } else {
+                    alert(`Thank you for donating $${amount}!`);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
